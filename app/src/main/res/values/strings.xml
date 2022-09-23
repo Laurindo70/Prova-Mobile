@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ProvaP1</string>
+    <string name="quilometragem">Quilometragem:</string>
+    <string name="quantidade_abastecida">Quantidade Abastecida:</string>
+    <string name="dia_abastecimento">Dia Abastecimento:</string>
+    <string name="valor">Valor:</string>
+    <string name="m_dia_consulmo">Média Consulmo</string>
 </resources>
