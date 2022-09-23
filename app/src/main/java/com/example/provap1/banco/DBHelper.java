@@ -19,9 +19,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table abastecimentos(" +
                         "id integer primary key autoincrement," +
                         "quilometragem varchar(20)," +
-                        "quantidade_abastecida(10)," +
-                        "data_abastecimento(15)," +
-                        "valor(20));"
+                        "quantidade_abastecida varchar(10)," +
+                        "data_abastecimento varchar(15)," +
+                        "valor varchar(20));"
         );
 
     }

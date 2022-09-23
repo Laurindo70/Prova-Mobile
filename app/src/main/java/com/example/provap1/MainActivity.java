@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.provap1.banco.AbastecimentoDB;
 import com.example.provap1.banco.DBHelper;
 import com.example.provap1.model.Abastecimento;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     List<Abastecimento> dados;
     ListView listagem;
     DBHelper db;
+    AbastecimentoDB abastecimentoDB;
 
 
     @Override
@@ -44,6 +47,22 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter adapter =
                 new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dados);
         listagem.setAdapter(adapter);
+        abastecimentoDB = new AbastecimentoDB(db);
+
+    }
+
+    public void salvar(View view){
+
+        Abastecimento abastecimento = new Abastecimento();
+
+        abastecimento.setData_abastecimento(dataAbastecimento.getText().toString());
+        abastecimento.setQuatidadeAbastecida(quantidadeAbastecida.getText().toString());
+        abastecimento.setQuilometragem(quilometragem.getText().toString());
+        abastecimento.setValor(valor.getText().toString());
+
+        abastecimentoDB.salvar(abastecimento);
+
+        Toast.makeText(this,"Salvo com sucesso", Toast.LENGTH_SHORT).show();
 
     }
 }
