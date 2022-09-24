@@ -47,4 +47,9 @@ public class Abastecimento {
     public void setValor(String valor) {
         this.valor = valor;
     }
+
+    @Override
+    public String toString() {
+        return "data=" + data_abastecimento + " - quilometragem=" + quilometragem;
+    }
 }
