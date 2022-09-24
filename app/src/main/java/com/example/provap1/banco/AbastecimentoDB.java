@@ -65,6 +65,32 @@ public class AbastecimentoDB {
 
     }
 
+    public float mediaConsulmo(){
+        float media = 0;
+        float quilometragem = 0;
+        float quantidade = 0;
+        conexao = db.getWritableDatabase();
+        String colunas[] = {"quilometragem", "quantidade_abastecida"};
 
+        Cursor query = conexao.query("abastecimentos", colunas,
+                null, null, null,
+                null, "quilometragem");
+
+        while (query.moveToNext()){
+            quilometragem = quilometragem + Integer.parseInt(query.getString(0));
+            quantidade = quantidade + Integer.parseInt(query.getString(1));
+        }
+
+        conexao.close();
+
+        media = quantidade/quilometragem;
+
+        if(quilometragem == 0){
+            return 0;
+        } else {
+            return media;
+        }
+
+    }
 
 }

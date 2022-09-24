@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         listagem.setAdapter(adapter);
         abastecimentoDB = new AbastecimentoDB(db);
         abastecimentoDB.listar(dados);
+        media.setText("" + abastecimentoDB.mediaConsulmo());
         ((ArrayAdapter) listagem.getAdapter()
         ).notifyDataSetChanged();
 
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                         Abastecimento abastecimento = dados.get(i);
                                         abastecimentoDB.remover(abastecimento.getId());
                                         abastecimentoDB.listar(dados);
+                                        media.setText("" + abastecimentoDB.mediaConsulmo());
                                         ((ArrayAdapter) listagem.getAdapter()
                                         ).notifyDataSetChanged();
                                     }
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         abastecimentoDB.salvar(abastecimento);
         abastecimentoDB.listar(dados);
+        media.setText("" + abastecimentoDB.mediaConsulmo());
         ((ArrayAdapter) listagem.getAdapter()
         ).notifyDataSetChanged();
 
