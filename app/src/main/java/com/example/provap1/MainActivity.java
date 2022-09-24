@@ -41,13 +41,17 @@ public class MainActivity extends AppCompatActivity {
         dataAbastecimento = findViewById(R.id.diaAbastecimento);
         valor = findViewById(R.id.valor);
         media = findViewById(R.id.mediaConsulmo);
+        listagem = findViewById(R.id.listagem);
 
-        dados = new ArrayList();
+        dados= new ArrayList();
 
         ArrayAdapter adapter =
                 new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dados);
         listagem.setAdapter(adapter);
         abastecimentoDB = new AbastecimentoDB(db);
+        abastecimentoDB.listar(dados);
+        ((ArrayAdapter) listagem.getAdapter()
+        ).notifyDataSetChanged();
 
     }
 
@@ -61,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         abastecimento.setValor(valor.getText().toString());
 
         abastecimentoDB.salvar(abastecimento);
+        abastecimentoDB.listar(dados);
+        ((ArrayAdapter) listagem.getAdapter()
+        ).notifyDataSetChanged();
 
         Toast.makeText(this,"Salvo com sucesso", Toast.LENGTH_SHORT).show();
 
