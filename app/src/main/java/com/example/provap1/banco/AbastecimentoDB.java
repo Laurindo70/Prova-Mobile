@@ -56,4 +56,15 @@ public class AbastecimentoDB {
 
     }
 
+    public void remover(int id){
+
+        conexao = db.getWritableDatabase();
+        conexao.delete("abastecimentos", "id=?", new String[]{id+""});
+
+        conexao.close();
+
+    }
+
+
+
 }

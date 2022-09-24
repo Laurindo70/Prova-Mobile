@@ -2,8 +2,11 @@ package com.example.provap1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -53,6 +56,32 @@ public class MainActivity extends AppCompatActivity {
         ((ArrayAdapter) listagem.getAdapter()
         ).notifyDataSetChanged();
 
+        acao();
+
+    }
+
+    public void acao(){
+        listagem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                new AlertDialog.Builder(view.getContext())
+                        .setMessage("Deseja realmente remover")
+                        .setPositiveButton("Confirmar",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface,
+                                                        int k) {
+                                        Abastecimento abastecimento = dados.get(i);
+                                        abastecimentoDB.remover(abastecimento.getId());
+                                        abastecimentoDB.listar(dados);
+                                        ((ArrayAdapter) listagem.getAdapter()
+                                        ).notifyDataSetChanged();
+                                    }
+                                })
+                        .setNegativeButton("cancelar",null)
+                        .create().show();
+            }
+        });
     }
 
     public void salvar(View view){
